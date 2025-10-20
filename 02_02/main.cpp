@@ -17,7 +17,7 @@ int Recursive(int hour, int rec, int recSum, int hourlySum) {
 }
 
 int main() {
-  Recursive(1, 100, 0, 0); // 1時間目は100円からスタート
+  Recursive(0, 100, 0, 0); // 1時間目は100円からスタート
 
   return 0;
 }
