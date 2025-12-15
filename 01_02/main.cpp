@@ -1,8 +1,7 @@
 #include <algorithm>
 #include <iostream>
-#include <stdio.h>
-#include <string>
 #include <vector>
+
 using namespace std;
 
 int main() {
@@ -35,21 +34,21 @@ int main() {
       "k024g0093 @g.neec.ac.jp", "k024g0024 @g.neec.ac.jp",
   };
 
-  printf("整理前の並び順\n\n");
+  cout << "整理前の並び順\n\n";
 
   // 全要素を表示
-  for (int i = 0; i < numbers.size(); i++) {
-    cout << numbers[i] << endl;
+  for (const auto &s : numbers) {
+    cout << s << endl;
   }
 
   // 昇順に並べ替え
   sort(numbers.begin(), numbers.end());
 
-  printf("\n整理後の並び順\n\n");
+  cout << "\n整理後の並び順\n\n";
 
   // 全要素を表示
-  for (int i = 0; i < numbers.size(); i++) {
-    cout << numbers[i] << endl;
+  for (const auto &s : numbers) {
+    cout << s << endl;
   }
 
   return 0;
