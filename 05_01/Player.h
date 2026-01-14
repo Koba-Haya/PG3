@@ -15,7 +15,7 @@ public:
 
 private:
   // メンバ変数
-  Vector2 pos_; // 位置
-  float speed_; // 速度
+  Vector2 pos_;  // 位置
+  float speed_;  // 速度
   float radius_; // 半径
 };

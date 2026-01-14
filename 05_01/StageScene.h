@@ -2,7 +2,7 @@
 #include "InputHandler.h"
 #include "Player.h"
 
-class StageScene{
+class StageScene {
 public:
   ~StageScene();
   void Init();
