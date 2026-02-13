@@ -1,28 +1,30 @@
+#include <condition_variable>
 #include <iostream>
-#include <stdio.h>
+#include <mutex>
 #include <thread>
 
-void Triple(int num) {
-  num *= 3;
-  std::cout << "num * 3 = " << num << std::endl;
-}
+std::mutex g_mtx;
+std::condition_variable g_cv;
+int g_turn = 1;
 
-void AddFifth(int num) {
-  num += 5;
-  std::cout << "num + 5 = " << num << std::endl;
-}
+void PrintThreadLine(int id) {
+  std::unique_lock<std::mutex> lock(g_mtx);
+  g_cv.wait(lock, [&] { return g_turn == id; });
 
-void SubtractThree(int num) {
-  num -= 3;
-  std::cout << "num - 3 = " << num << std::endl;
+  std::cout << "thread " << id << std::endl;
+
+  ++g_turn;
+  lock.unlock();
+  g_cv.notify_all();
 }
 
 int main() {
-  int num = 10;
-  std::thread t1(SubtractThree, num);
-  std::thread t2(Triple, num);
-  std::thread t3(AddFifth, num);
+  std::thread t1(PrintThreadLine, 1);
+  std::thread t2(PrintThreadLine, 2);
+  std::thread t3(PrintThreadLine, 3);
+
   t1.join();
   t2.join();
   t3.join();
+  return 0;
 }
